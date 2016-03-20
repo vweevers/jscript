@@ -1,6 +1,6 @@
 # jscript
 
-**JScript runner: a duplex stream wrapper around [cscript](https://technet.microsoft.com/en-us/library/bb490887.aspx) with optional JSON serialization for easy marshalling of data between Node.js and Windows Script Host.**
+**[JScript](https://en.wikipedia.org/wiki/JScript) runner: a duplex stream wrapper around [cscript](https://technet.microsoft.com/en-us/library/bb490887.aspx) with optional JSON serialization for easy marshalling of data between Node.js and [Windows Script Host](https://en.wikipedia.org/wiki/Windows_Script_Host).**
 
 [![npm status](http://img.shields.io/npm/v/jscript.svg?style=flat-square)](https://www.npmjs.org/package/jscript) [![AppVeyor build status](https://img.shields.io/appveyor/ci/vweevers/jscript.svg?style=flat-square&label=appveyor)](https://ci.appveyor.com/project/vweevers/jscript) [![Dependency status](https://img.shields.io/david/vweevers/jscript.svg?style=flat-square)](https://david-dm.org/vweevers/jscript)
 
