@@ -1,0 +1,36 @@
+{
+  "name": "jscript",
+  "version": "0.0.1",
+  "description": "JScript runner as a duplex stream",
+  "license": "MIT",
+  "author": {
+    "name": "Vincent Weevers",
+    "email": "mail@vincentweevers.nl"
+  },
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "dependencies": {
+    "duplexify": "~3.4.3",
+    "json-stream": "~1.0.0",
+    "through2": "~2.0.1",
+    "windows-bin": "~1.0.0"
+  },
+  "devDependencies": {
+    "tape": "~4.5.1"
+  },
+  "keywords": [
+    "cscript",
+    "jscript",
+    "windows",
+    "wscript",
+    "wsh"
+  ],
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">=2.0.0"
+  },
+  "repository": "vweevers/jscript",
+  "bugs": "https://github.com/vweevers/jscript/issues",
+  "homepage": "https://github.com/vweevers/jscript"
+}
