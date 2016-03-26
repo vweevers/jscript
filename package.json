@@ -7,8 +7,12 @@
     "name": "Vincent Weevers",
     "email": "mail@vincentweevers.nl"
   },
+  "files": [
+    "index.js"
+  ],
   "scripts": {
-    "test": "tape test.js"
+    "build-test": "jscriptify -c test/fixtures main.js -o bundle.js",
+    "test": "node test"
   },
   "dependencies": {
     "duplexify": "~3.4.3",
@@ -17,7 +21,10 @@
     "windows-bin": "~1.0.0"
   },
   "devDependencies": {
-    "tape": "~4.5.1"
+    "concat-stream": "~1.5.1",
+    "json3": "~3.3.2",
+    "tape": "~4.5.1",
+    "windows-env": "~1.0.1"
   },
   "keywords": [
     "cscript",
