@@ -7,9 +7,14 @@ environment:
   matrix:
     - nodejs_version: "0.10"
     - nodejs_version: "4"
+    - nodejs_version: "5"
+
+platform:
+  - x86
+  - x64
 
 install:
-  - ps: Install-Product node $env:nodejs_version
+  - ps: Install-Product node $env:nodejs_version $env:platform
   - npm -g i npm@latest
   - set PATH=%APPDATA%\npm;%PATH%;%APPVEYOR_BUILD_FOLDER%\node_modules\.bin
   - npm i
