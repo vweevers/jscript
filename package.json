@@ -1,6 +1,6 @@
 {
   "name": "jscript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JScript runner as a duplex stream",
   "license": "MIT",
   "author": {
