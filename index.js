@@ -9,7 +9,8 @@ var execFile   = require('child_process').execFile
 
 function createStream (script, opts_) {
   var opts = opts_ || {}
-  var duplex = duplexify.obj(null, null)
+  var json = opts.wrap === 'json' || opts.json
+  var duplex = json ? duplexify.obj() : duplexify()
 
   function errback(err) {
     if (err) duplex.destroy(err)
@@ -29,11 +30,14 @@ function createStream (script, opts_) {
     var input = child.stdin
     var output = child.stdout
 
-    if (opts.wrap === 'json' || opts.json) {
+    if (json) {
       input = stringify()
       input.pipe(child.stdin)
       input.on('error', errback)
       output = output.pipe(parseJSON())
+    } else {
+      // Not sure why this is necessary
+      output.pause()
     }
 
     duplex.setReadable(output)
