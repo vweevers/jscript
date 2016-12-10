@@ -18,16 +18,40 @@ test('json', function (t) {
   duplex.end()
 })
 
+test('json without input', function (t) {
+  t.plan(1)
+
+  var duplex = jscript(bundle, { json: true, args: ['/json-without-input'] })
+
+  duplex.pipe(concat({ encoding: 'object' }, function (items) {
+    t.same(items, [1, 2, 3], 'result ok')
+  }))
+
+  duplex.end()
+})
+
 test('plain', function (t) {
   t.plan(1)
 
-  var duplex = jscript(bundle)
+  var duplex = jscript(bundle, { args: ['/plain'] })
 
   duplex.pipe(concat(function (res) {
     t.same(res.toString(), '1A2B', 'result ok')
   }))
 
   duplex.end('a\nb')
+})
+
+test('plain without input', function (t) {
+  t.plan(1)
+
+  var duplex = jscript(bundle, { args: ['/plain-without-input'] })
+
+  duplex.pipe(concat(function (res) {
+    t.same(res.toString(), 'hello\nworld', 'result ok')
+  }))
+
+  duplex.end()
 })
 
 test('arch', function (t) {
