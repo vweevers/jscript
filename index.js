@@ -12,8 +12,8 @@ function createStream (script, opts_) {
   var json = opts.wrap === 'json' || opts.json
   var duplex = json ? duplexify.obj() : duplexify()
 
-  function errback(err) {
-    if (err) duplex.destroy(err)
+  function destroy(err) {
+    duplex.destroy(err)
   }
 
   // Find the cscript binary. If we're on 64-bit Windows and 32-bit
@@ -29,7 +29,10 @@ function createStream (script, opts_) {
       stdio: ['pipe', 'pipe', opts.debug ? 'pipe' : 'ignore']
     })
 
-    child.on('error', errback)
+    child.on('error', destroy)
+    child.on('exit', function (code) {
+      if (code) destroy(exitError(code))
+    })
 
     var input = child.stdin
     var output = child.stdout
@@ -37,7 +40,7 @@ function createStream (script, opts_) {
     if (json) {
       input = stringify()
       input.pipe(child.stdin)
-      input.on('error', errback)
+      input.on('error', destroy)
       output = output.pipe(parseJSON())
     }
 
@@ -56,6 +59,12 @@ function stringify() {
   return through2.obj(function(req, enc, next) {
     next(null, JSON.stringify(req) + '\r\n')
   })
+}
+
+function exitError(code) {
+  var err = new Error('Exited with code ' + code)
+  err.code = code
+  return err
 }
 
 module.exports = createStream

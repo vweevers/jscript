@@ -24,4 +24,6 @@ if (args.Exists('json')) {
   }
 } else if (args.Exists('plain-without-input')) {
   WScript.StdOut.Write('hello\nworld')
+} else if (args.Exists('exit-code')) {
+  WScript.Quit(2)
 }

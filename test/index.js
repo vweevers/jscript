@@ -89,3 +89,14 @@ test('arch', function (t) {
     })
   }
 })
+
+test('exit code', function (t) {
+  t.plan(2)
+
+  var duplex = jscript(bundle, { args: ['/exit-code'] })
+
+  duplex.on('error', function (err) {
+    t.is(err && err.message, 'Exited with code 2')
+    t.is(err && err.code, 2)
+  })
+})
