@@ -11,8 +11,8 @@
     "index.js"
   ],
   "scripts": {
-    "build-test": "jscriptify -c test/fixtures main.js -o bundle.js",
-    "test": "node test"
+    "fixture": "jscriptify -c test/fixtures main.js -o bundle.js",
+    "test": "npm run fixture && node test"
   },
   "dependencies": {
     "duplexify": "~3.5.0",
