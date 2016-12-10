@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "concat-stream": "~1.5.2",
+    "jscriptify": "~1.0.2",
     "json3": "~3.3.2",
     "tape": "~4.6.3",
     "windows-env": "~1.0.1"
