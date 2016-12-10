@@ -9,8 +9,7 @@ var spawn      = require('child_process').spawn
 
 function createStream (script, opts_) {
   var opts = opts_ || {}
-  var json = opts.wrap === 'json' || opts.json
-  var duplex = json ? duplexify.obj() : duplexify()
+  var duplex = opts.json ? duplexify.obj() : duplexify()
 
   function destroy(err) {
     duplex.destroy(err)
@@ -37,7 +36,7 @@ function createStream (script, opts_) {
     var input = child.stdin
     var output = child.stdout
 
-    if (json) {
+    if (opts.json) {
       input = stringify()
       input.pipe(child.stdin)
       input.on('error', destroy)
