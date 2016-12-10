@@ -79,6 +79,14 @@ With [npm](https://npmjs.org) do:
 npm install jscript
 ```
 
+## changelog
+
+### 2.0.0
+
+- Drop support of Node 0.10 and 0.12, and 6 and 7
+- Emit error on non-zero exit code;
+- Remove `wrap` option. Use `{ json: true }` instead.
+
 ## license
 
 [MIT](http://opensource.org/licenses/MIT) © Vincent Weevers
