@@ -1,6 +1,6 @@
 'use strict';
 
-var execFile   = require('child_process').execFile
+var spawn      = require('child_process').spawn
   , parseJSON  = require('json-stream')
   , duplexify  = require('duplexify')
   , wbin       = require('windows-bin')
@@ -25,7 +25,11 @@ function createStream (script, opts_) {
     if (err) return duplex.destroy(err)
 
     var args = ['//Nologo', '//B', resolve(script)].concat(opts.args || [])
-    var child = execFile(bin, args, errback)
+    var child = spawn(bin, args, {
+      stdio: ['pipe', 'pipe', opts.debug ? 'pipe' : 'ignore']
+    })
+
+    child.on('error', errback)
 
     var input = child.stdin
     var output = child.stdout
@@ -35,9 +39,6 @@ function createStream (script, opts_) {
       input.pipe(child.stdin)
       input.on('error', errback)
       output = output.pipe(parseJSON())
-    } else {
-      // Not sure why this is necessary
-      output.pause()
     }
 
     duplex.setReadable(output)
