@@ -83,7 +83,7 @@ npm install jscript
 
 ### 2.0.0
 
-- Drop support of Node 0.10 and 0.12, and 6 and 7
+- Drop support of Node 0.10 and 0.12, add 6 and 7
 - Emit error on non-zero exit code;
 - Remove `wrap` option. Use `{ json: true }` instead.
 
